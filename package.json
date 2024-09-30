@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "http-proxy-middleware": "^3.0.2"
+  },
+  "name": "wp-api",
+  "main": "src/app.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0"
+  },
+  "scripts": {
+    "start": "bun run src/app.ts",
+    "dev": "bun --watch src/app.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
