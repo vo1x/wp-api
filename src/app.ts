@@ -4,17 +4,30 @@ import cors from "cors";
 import router from "./routes/routes.ts";
 
 const app = Express();
-app.use(Express.json());
 
 const PORT = process.env.PORT ?? 5000;
 
-app.use(
-  cors({
-    origin: "https://uhdbuilder.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+const allowedOrigins = [
+  "https://uhdposters.vercel.app",
+  "https://cloudfiler.vercel.app",
+  "https://uhdbuilder.vercel.app",
+  "http://localhost:5173",
+];
+
+const corsOptions = {
+  origin: function (origin: any, callback: any) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+app.use(Express.json());
 
 const wpProxy = createProxyMiddleware({
   target: "https://uhdmovies.icu",
