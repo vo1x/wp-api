@@ -1,7 +1,7 @@
 import Express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import cors from "cors";
-import router from "./routes/routes.ts";
+import router from "./routes/routes";
 
 const app = Express();
 

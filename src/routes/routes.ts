@@ -1,6 +1,6 @@
 import Express, { Request, Response } from "express";
-import { createDraft } from "../controllers/draftController.ts";
-import { uploadImage } from "../controllers/imageController.ts";
+import { createDraft } from "../controllers/draftController";
+import { uploadImage } from "../controllers/imageController";
 
 const router = Express.Router();
 
