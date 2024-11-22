@@ -8,25 +8,13 @@ app.use(Express.json());
 
 const PORT = process.env.PORT ?? 5000;
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://uhdbuilder.vercel.app",
-  "https://anotherdomain.com",
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin ?? "") !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
 
 const wpProxy = createProxyMiddleware({
   target: "https://uhdmovies.icu",
