@@ -8,13 +8,13 @@ app.use(Express.json());
 
 const PORT = process.env.PORT ?? 5000;
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
+app.use(
+  cors({
+    origin: "https://uhdbuilder.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 const wpProxy = createProxyMiddleware({
   target: "https://uhdmovies.icu",
