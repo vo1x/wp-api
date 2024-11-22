@@ -1,4 +1,4 @@
-import { uploadImage } from "./imageController";
+import { uploadImage } from "./imageController.ts";
 
 const WP_USERNAME = process.env.WP_USERNAME;
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD;

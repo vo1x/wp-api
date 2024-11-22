@@ -1,27 +1,26 @@
 import Express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import cors from "cors";
-import router from "./routes/routes";
+import router from "./routes/routes.ts";
 
 const app = Express();
 app.use(Express.json());
 
 const PORT = process.env.PORT ?? 5000;
 
-
 app.use(
   cors({
-    origin: "http://localhost:5173", 
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 const wpProxy = createProxyMiddleware({
-  target: "https://uhdmovies.mov",
+  target: "https://uhdmovies.icu",
   changeOrigin: true,
   pathRewrite: {
-    "^/wp-json": "/wp-json", 
+    "^/wp-json": "/wp-json",
   },
 });
 

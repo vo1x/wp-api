@@ -1,6 +1,8 @@
 const WP_USERNAME = process.env.WP_USERNAME;
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD;
 
+
+
 export const uploadImage = async (
   fileName: string,
   imgUrl: string
@@ -17,7 +19,7 @@ export const uploadImage = async (
     formData.append("file", new Blob([imageArrayBuffer]), fileName);
 
     const uploadResponse = await fetch(
-      "https://uhdmovies.mov/wp-json/wp/v2/media",
+      "https://uhdmovies.icu/wp-json/wp/v2/media",
       {
         method: "POST",
         headers: {
