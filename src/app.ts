@@ -6,6 +6,7 @@ import router from "./routes/routes";
 const app = Express();
 
 const PORT = process.env.PORT ?? 5000;
+const BASE_URL = process.env.BASE_URL;
 
 const allowedOrigins = [
   "https://uhdposters.vercel.app",
@@ -30,7 +31,7 @@ app.use(cors(corsOptions));
 app.use(Express.json());
 
 const wpProxy = createProxyMiddleware({
-  target: "https://uhdmovies.icu",
+  target: BASE_URL,
   changeOrigin: true,
   pathRewrite: {
     "^/wp-json": "/wp-json",
