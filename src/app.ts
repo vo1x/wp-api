@@ -12,6 +12,7 @@ const allowedOrigins = [
   "https://uhdposters.vercel.app",
   "https://cloudfiler.vercel.app",
   "https://uhdbuilder.vercel.app",
+  "https://uhdwpapi.vercel.app/",
   "http://localhost:5173",
 ];
 
