@@ -2,12 +2,14 @@ import { uploadImage } from "./imageController";
 
 const WP_USERNAME = process.env.WP_USERNAME;
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD;
+const baseUrl = process.env.BASE_URL;
 
 export const createDraft = async (
   title: string,
   content: string,
   imageFileName?: string,
-  imageUrl?: string
+  imageUrl?: string,
+  sticky?: boolean
 ): Promise<any | null> => {
   try {
     const bodyData: any = {
@@ -25,7 +27,11 @@ export const createDraft = async (
       }
     }
 
-    const response = await fetch("https://uhdmovies.mov/wp-json/wp/v2/posts", {
+    if (sticky) {
+      bodyData.sticky = true;
+    }
+
+    const response = await fetch(`${baseUrl}/wp-json/wp/v2/posts`, {
       method: "POST",
       headers: {
         Authorization:

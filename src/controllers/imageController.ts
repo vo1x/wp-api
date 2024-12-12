@@ -1,7 +1,6 @@
 const WP_USERNAME = process.env.WP_USERNAME;
 const WP_APP_PASSWORD = process.env.WP_APP_PASSWORD;
-
-
+const baseUrl = process.env.BASE_URL;
 
 export const uploadImage = async (
   fileName: string,
@@ -18,18 +17,15 @@ export const uploadImage = async (
     console.log(fileName);
     formData.append("file", new Blob([imageArrayBuffer]), fileName);
 
-    const uploadResponse = await fetch(
-      "https://uhdmovies.icu/wp-json/wp/v2/media",
-      {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Basic " +
-            Buffer.from(`${WP_USERNAME}:${WP_APP_PASSWORD}`).toString("base64"),
-        },
-        body: formData,
-      }
-    );
+    const uploadResponse = await fetch(`${baseUrl}/wp-json/wp/v2/media`, {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Basic " +
+          Buffer.from(`${WP_USERNAME}:${WP_APP_PASSWORD}`).toString("base64"),
+      },
+      body: formData,
+    });
 
     if (!uploadResponse.ok) {
       const errorBody = await uploadResponse.text();

@@ -1,6 +1,6 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-const baseUrl = "https://uhdmovies.icu";
+const baseUrl = process.env.BASE_URL
 
 const wpProxy = createProxyMiddleware({
   target: baseUrl,

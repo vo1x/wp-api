@@ -5,13 +5,21 @@ import { uploadImage } from "../controllers/imageController";
 const router = Express.Router();
 
 router.post("/createDraft", async (req: Request, res: Response) => {
-  const { title, content, imageFileName, imageUrl } = req.body;
-  let newDraft: any | null = null;
-  if (!imageFileName || !imageUrl) {
-    newDraft = await createDraft(title, content);
-  } else {
-    newDraft = await createDraft(title, content, imageFileName, imageUrl);
-  }
+  const {
+    title,
+    content,
+    imageFileName = null,
+    imageUrl = null,
+    sticky = false,
+  } = req.body;
+
+  const newDraft = await createDraft(
+    title,
+    content,
+    imageFileName,
+    imageUrl,
+    sticky
+  );
 
   if (!newDraft) {
     res
